@@ -136,6 +136,13 @@ namespace Telepathy
                             //  through to here when aborting. don't show an
                             //  error.)
                         }
+                        catch (ThreadInterruptedException)
+                        {
+                            // happens if receive thread interrupts send thread. don't log anything.
+                            // (we catch it in SendLoop too, but it still gets
+                            //  through to here when aborting. don't show an
+                            //  error.)
+                        }
                         catch (Exception exception)
                         {
                             Log.Error("Server send thread exception: " + exception);
